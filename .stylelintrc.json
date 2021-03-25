@@ -1,6 +1,7 @@
 {
-    "extends": "stylelint-config-sass-guidelines",
+    "extends": "stylelint-config-outside-in-order",
     "rules": {
-        "selector-class-pattern": null
-    }
+        "indentation": 2,
+        "number-leading-zero": null
+      }
 }
