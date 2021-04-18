@@ -1,50 +1,38 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, './src/js/App.jsx'),
+    main: path.resolve(__dirname, './src/js/main.js')
   },
   output: {
     publicPath: '',
-    path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname ,'./dist'),
+    filename: 'bundle.js'
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'RSLang',
-      template: path.resolve(__dirname, './public/html/index.html'),
-      filename: 'index.html',
-    }),
+    new htmlWebpackPlugin({
+      template: path.resolve(__dirname, './src/index.html'),
+      filename: 'index.html'
+    })
   ],
   module: {
-    rules:
-      [{
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
+    rules: [
       {
-        test: /\.html$/i,
-        loader: 'html-loader',
-      },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
-      },
-      {
-        test: /\.(css|scss)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.(png|webp|svg|jpg|jpeg|gif|eot|woff|ttf)$/i,
-        loader: 'file-loader',
+        enforce: 'pre',
+        test: /\.js$/i,
+        loader: 'eslint-loader',
         options: {
-          name: '[path]/[name].[ext]',
-          context: 'src',
-        },
+          emitWarning: true,
+          failOnError: false,
+          failOnWaring: false
+        }
       },
-      ],
-  },
-};
+      {
+        test: /\.js$/i,
+        use: 'babel-loader',
+        exclude: /node_modules/
+      }
+    ]
+  }
+}
