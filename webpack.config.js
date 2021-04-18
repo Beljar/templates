@@ -1,20 +1,20 @@
 const path = require('path');
-const htmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, './src/js/main.js')
+    main: path.resolve(__dirname, './src/js/main.js'),
   },
   output: {
     publicPath: '',
-    path: path.resolve(__dirname ,'./dist'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, './dist'),
+    filename: 'bundle.js',
   },
   plugins: [
-    new htmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/index.html'),
-      filename: 'index.html'
-    })
+      filename: 'index.html',
+    }),
   ],
   module: {
     rules: [
@@ -25,14 +25,19 @@ module.exports = {
         options: {
           emitWarning: true,
           failOnError: false,
-          failOnWaring: false
-        }
+          failOnWaring: false,
+        },
       },
       {
         test: /\.js$/i,
         use: 'babel-loader',
-        exclude: /node_modules/
-      }
-    ]
-  }
-}
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.(css|scss)$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+        exclude: /node_modules/,
+      },
+    ],
+  },
+};
