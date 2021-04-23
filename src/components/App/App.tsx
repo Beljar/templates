@@ -1,6 +1,6 @@
-import React from "react";
-import { Switch, Route, HashRouter } from "react-router-dom";
-import appStyles from "./AppStyles";
+import React from 'react';
+import { Switch, Route, HashRouter } from 'react-router-dom';
+import appStyles from './AppStyles';
 
 const App = () => {
   const useStyles = appStyles();

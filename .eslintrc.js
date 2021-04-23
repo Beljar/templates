@@ -23,7 +23,7 @@ module.exports = {
   ],
   "rules": {
     "linebreak-style": ["error", (process.platform === "win32" ? "windows" : "unix")],
-    "quotes": ["error", "double"],
+    "quotes": ["error", "single"],
     "max-len": ["error", { "code": 120 }],
     "no-loop-func": 1,
     "import/extensions": [
