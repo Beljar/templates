@@ -99,10 +99,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      favicon: "./src/components/icons/favicon.ico",
+      favicon: "./src/assets/icons/favicon.ico",
       template: "./src/index.html",
       filename: "./index.html",
-      // favicon: "../src/html/favicon.ico",
       excludeChunks: ['']
     }),
     new webpack.HotModuleReplacementPlugin(),
