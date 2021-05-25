@@ -1,8 +1,11 @@
-const path = require("path")
+const path = require("path");
+const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const TerserPlugin = require("terser-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+
 module.exports = {
   entry: {
     main: './src/index.tsx'
@@ -57,9 +60,9 @@ module.exports = {
       {
         // Loads images into CSS and Javascript files
         // url-loader dont work with wav format?
-        test: /\.(png|svg|jpg|gif|mp3|wav)$/,
+        test: /\.(png|svg|jpg|gif|mp3|wav|ttf|woff|eot)$/,
         use: [{
-          loader: "url-loader"
+          loader: "file-loader"
         }]
       },
       {
@@ -71,6 +74,8 @@ module.exports = {
     ]
   },
   plugins: [
+    new CompressionWebpackPlugin(),
+    new BundleAnalyzerPlugin(),
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html"
@@ -78,7 +83,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css"
-    })
+    }),
   ],
   resolve: {
     extensions: [".ts", ".tsx", ".js"]

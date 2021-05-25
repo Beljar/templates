@@ -92,7 +92,7 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       },
       {
-        test: /\.(png|svg|jpg|gif|mp3|wav)$/,
+        test: /\.(png|svg|jpg|gif|mp3|wav|ttf|woff|eot)$/,
         use: ['file-loader']
       },
     ]
